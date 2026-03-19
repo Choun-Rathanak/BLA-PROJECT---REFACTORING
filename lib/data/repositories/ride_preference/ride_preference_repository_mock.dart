@@ -7,8 +7,8 @@ import 'package:homework/model/ride_pref/ride_pref.dart';
 
 class RidePreferenceRepositoryMock implements RidePreferenceRepository {
   @override
-  List<RidePreference> fetchRidePreference() {
-    return fakeRidePrefs;
+  Future <List<RidePreference>> fetchRidePreference() {
+   return fetchFakeRidePrefs();
   }
 
 }
