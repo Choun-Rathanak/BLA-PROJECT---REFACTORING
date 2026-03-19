@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:homework/ui/widgets/pickers/bla_ride_preference_picker.dart';
-
+import 'package:homework/ui/widgets/pickers/ride_preferenece/bla_ride_preference_picker.dart';
 import '../../../../model/ride_pref/ride_pref.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/buttons/bla_icon_button.dart';
@@ -10,6 +9,9 @@ import '../../../widgets/buttons/bla_icon_button.dart';
 //
 // Wrap the ride preference picker within a modal 
 //
+
+ 
+
 class RidePreferenceModal extends StatefulWidget {
   const RidePreferenceModal({super.key, required this.initialPreference});
 
@@ -30,6 +32,7 @@ class _RidePreferenceModalState extends State<RidePreferenceModal> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(

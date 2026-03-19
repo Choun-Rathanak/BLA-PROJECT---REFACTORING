@@ -1,18 +1,22 @@
 
 import 'package:flutter/material.dart';
-import 'package:homework/services/location_service.dart';
+import 'package:homework/data/repositories/location/location_repository.dart';
 import 'package:homework/ui/widgets/display/bla_divider.dart';
-
-import '../../../model/ride/locations.dart';
-import '../../theme/theme.dart';
+import 'package:provider/provider.dart';
+import '../../../../model/ride/locations.dart';
+import '../../../theme/theme.dart';
 
 ///
 /// A  Location Picker is a view to pick a Location:
 ///
+
+
 class BlaLocationPicker extends StatefulWidget {
   const BlaLocationPicker({super.key, required this.initLocation});
 
   final Location? initLocation; // optional initial location
+  
+ 
 
   @override
   State<BlaLocationPicker> createState() => _BlaLocationPickerState();
@@ -47,11 +51,11 @@ class _BlaLocationPickerState extends State<BlaLocationPicker> {
     });
   }
 
-  List<Location> get filteredLocation {
+  List<Location> filteredLocation(LocationRepository lp) {
     if (currentSearchText.length < 2) {
       return [];
     }
-    return LocationsService.availableLocations
+    return lp.fetchLocation()
         .where(
           (location) => location.name.toUpperCase().contains(
             currentSearchText.toUpperCase(),
@@ -62,6 +66,7 @@ class _BlaLocationPickerState extends State<BlaLocationPicker> {
 
   @override
   Widget build(BuildContext context) {
+    final lp = context.read<LocationRepository>().fetchLocation();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(
@@ -81,9 +86,9 @@ class _BlaLocationPickerState extends State<BlaLocationPicker> {
 
             Expanded(
               child: ListView.builder(
-                itemCount: filteredLocation.length,
+                itemCount: lp.length,
                 itemBuilder: (context, index) => LocationTile(
-                  location: filteredLocation[index],
+                  location: lp[index],
                   onTap: onTap,
                 ),
               ),

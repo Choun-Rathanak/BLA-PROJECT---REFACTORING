@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../model/ride/ride.dart';
 import '../../../model/ride_pref/ride_pref.dart';
 import '../../../services/ride_prefs_service.dart';
-import '../../../services/rides_service.dart';
 import '../../../utils/animations_util.dart' show AnimationUtils;
 import '../../theme/theme.dart';
 import 'widgets/ride_preference_modal.dart';
@@ -38,8 +37,8 @@ class _RidesSelectionScreenState extends State<RidesSelectionScreen> {
   RidePreference get selectedRidePreference =>
       RidePrefsService.selectedPreference!; // not null at this state
 
-  List<Ride> get matchingRides =>
-      RidesService.getRidesFor(selectedRidePreference);
+  // List<Ride> get matchingRides =>
+  //     RidesService.getRidesFor(selectedRidePreference);
 
   void onPreferencePressed() async {
     // 1 - Navigate to the rides preference picker
@@ -76,15 +75,15 @@ class _RidesSelectionScreenState extends State<RidesSelectionScreen> {
         
             SizedBox(height: 100),
         
-            Expanded(
-              child: ListView.builder(
-                itemCount: matchingRides.length,
-                itemBuilder: (ctx, index) => RideSelectionTile(
-                  ride: matchingRides[index],
-                  onPressed: () => onRideSelected(matchingRides[index]),
-                ),
-              ),
-            ),
+            // Expanded(
+            //   child: ListView.builder(
+            //     itemCount: matchingRides.length,
+            //     itemBuilder: (ctx, index) => RideSelectionTile(
+            //       ride: matchingRides[index],
+            //       onPressed: () => onRideSelected(matchingRides[index]),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
